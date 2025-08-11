@@ -121,7 +121,7 @@ This backend receives the input from frontend and displays the calculated costs.
 ---
 
 ## **How It Works**
-1. **The backend can be checked at the [http://localhost:8080](http://localhost:8080)
+1. **The backend can be checked at the [http://localhost:8080](http://localhost:8080)**
 2. **Receive User Input** – The frontend user input is sent to backend in [http://localhost:8080/api/resources/calculate](http://localhost:8080/api/resources/calculate) 
 3. **Display Results** – The details(price/bill) are calculated and result is sent as a json at [http://localhost:8080/api/resources/price/summary](http://localhost:8080/api/resources/price/summary) 
 
