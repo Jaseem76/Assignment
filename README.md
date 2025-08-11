@@ -111,3 +111,29 @@ src/
    ```
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+
+# Cloud Cost Estimator – Backend
+
+**Tech Stack:** Java, SpringBoot, PSQL
+
+This backend receives the input from frontend and displays the calculated costs.
+
+---
+
+## **How It Works**
+1. **The backend can be checked at the [http://localhost:8080](http://localhost:8080)
+2. **Receive User Input** – The frontend user input is sent to backend in [http://localhost:8080/api/resources/calculate](http://localhost:8080/api/resources/calculate) 
+3. **Display Results** – The details(price/bill) are calculated and result is sent as a json at [http://localhost:8080/api/resources/price/summary](http://localhost:8080/api/resources/price/summary) 
+
+---
+
+## **Key Features**
+
+* **Cost_Estimation table** – The unit price is taken from cost_estimate table using (resource_type,resource_product)
+* **Region_Info table** – The region modifier is taken from region_info table by the region input given by user.
+* **Normalised and redundancy minimized tables** – This ensures the table entries to be minimal as possible, 9 entries (3 products for each type) in cost_estimation table and 3 entries(3 regions, 3 region modifiers) in   region_info table. This helps to have a base unit price stored in table and then using region modifier to change the unit price accordingly.
+
+  eg : if product : 'cpu', unit price : 500, then if region = usa , then we pick region modifier from region_info table, say 1.3(30% increment from base price). therefore the unit price will become 500X1.3 = 650Rs
+
+  The main logic for total price calculation = unit price*quantity*region modifier - for all the user input
+---
