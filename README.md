@@ -1,5 +1,3 @@
----
-
 # Cloud Cost Estimator – Frontend
 
 **Tech Stack:** React.js, JavaScript, HTML, CSS
@@ -102,6 +100,9 @@ src/
 
    ```bash
    npm install
+   npm install axios
+   npm install
+   npm install react-router-dom
    ```
 3. Start the development server:
 
@@ -110,4 +111,3 @@ src/
    ```
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
----
