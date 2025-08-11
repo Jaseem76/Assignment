@@ -1,0 +1,31 @@
+.price-container {
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 300px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f3f3f3 0%, #e2e2e2 100%);
+  text-align: center;
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  transition: transform 0.2s ease-in-out;
+}
+
+.price-container:hover {
+  transform: translateY(-2px);
+}
+
+.price-heading {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.price-value {
+  font-size: 20px;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 8px 16px;
+  border-radius: 10px;
+  display: inline-block;
+  color: #222;
+}

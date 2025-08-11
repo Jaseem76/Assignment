@@ -1,0 +1,105 @@
+
+.container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fefefe;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.quantity-input {
+  width: 80px;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
+
+button,
+select,
+input {
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin: 0.5rem 0;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover,
+select:hover,
+input:hover {
+  border-color: #007bff;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+
+
+.resource-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+  position: relative;
+  padding: 1rem;
+
+  margin-top: 1rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  background-color: #fafafa;
+}
+
+.resource-block select,
+.resource-block input {
+  flex: 0 1 auto;
+  min-width: 120px;
+}
+
+/* .resource-block select,
+.resource-block input {
+  flex: 1;
+  min-width: 150px;
+} */
+/* .resource-block select,
+.resource-block input {
+  width: 100%;
+  margin-top: 0.5rem;
+} */
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #e63946;
+  border: none;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.delete-btn:hover {
+  background-color: #c92a2a;
+}
+
+.add-button,
+.submit-button {
+  display: block;
+  margin: 1.5rem auto;
+  width: 60%;
+  max-width: 250px;
+}
