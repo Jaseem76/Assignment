@@ -1,25 +1,43 @@
 import './DynamicResourceRenderer.css';
 
-function ResourceInputBlock({ res, index, resourceOptions, onTypeChange, onProductChange, onQuantityChange, onRegionChange, onDelete }) {
+function ResourceInputBlock({ res, index, mainTypes, onTypeChange, handleMainChange, onProductChange, onQuantityChange, onRegionChange, onDelete, selectedMain, subTypes }) {
   return (
     <div className="resource-block">
-      <select value={res.type} onChange={(e) => onTypeChange(index, e.target.value)}>
+      <select
+
+        onChange={(e) => {
+
+          const id = e.target.value;
+          const name = e.target.options[e.target.selectedIndex].dataset.name;
+          console.log("ID:", id, "Name:", name);
+          onTypeChange(index, name)
+          handleMainChange(id)
+        }
+        }>
         <option value="">Select Type</option>
-        <option value="compute">Compute</option>
-        <option value="database">Database</option>
-        <option value="storage">Storage</option>
+        {mainTypes.map(main => (
+          <option key={main.id} value={main.id} data-name={main.name}>
+            {main.name}
+          </option>
+
+        ))}
+       
       </select>
 
-      {res.type && (
-        <select value={res.product} onChange={(e) => onProductChange(index, e.target.value)}>
+      { selectedMain && (
+        <select onChange={(e) => {
+          onProductChange(index, e.target.value)
+
+        }}>
           <option value="">Select Product</option>
-          {resourceOptions[res.type].map((prod) => (
-            <option key={prod} value={prod}>{prod}</option>
+          {subTypes && Array.isArray(subTypes) && subTypes.map(sub => (
+            <option key={sub.id} value={sub.name}>{sub.name}</option>
           ))}
+         
         </select>
       )}
 
-      {res.product && (
+      {subTypes && (
         <>
           <input
             type="number"

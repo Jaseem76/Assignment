@@ -1,15 +1,38 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './DynamicResourceRenderer.css';
 import ResourceInputBlock from './ResourceInputBlock';
 
 function DynamicResourceForm({ onSubmit }) {
-    const [resources, setResources] = useState([]);
 
-    const resourceOptions = {
-        compute: ['CPU', 'GPU', 'VM'],
-        database: ['Postgres', 'MySQL', 'MongoDB'],
-        storage: ['EBS', 'Azure Disk', 'Google Filestore'],
-    };
+    const [resources, setResources] = useState([]);
+    const [mainTypes, setMainTypes] = useState([]);
+    const [subTypes, setSubTypes] = useState([]);
+    const [selectedMain , setSelectedMain] = useState("");
+
+
+//     useEffect(() => {
+//     console.log("Current resources:", resources);
+// }, [resources]);
+
+
+    useEffect(() => {
+    fetch("http://localhost:8080/categories")
+        .then(res => res.json()) 
+        .then(data => setMainTypes(data))
+        .catch(err => console.error("Error fetching main categories:", err));
+}, []);
+
+const handleMainChange = (id) => {
+    setSelectedMain(id);
+    
+    console.log(`selected main : ${selectedMain}`);
+    fetch(`http://localhost:8080/categories/${id}/subcategories`)
+    .then(res => res.json())
+    .then(data => setSubTypes(data))
+    .catch(err => console.error("Error fetching subcategories:", err));
+    
+    
+};
 
     const handleAddResource = () => {
         const newResource = { id: Date.now(), type: '', product: '', quantity: 0, region: '' };
@@ -73,12 +96,15 @@ function DynamicResourceForm({ onSubmit }) {
                         key={res.id}
                         res={res}
                         index={index}
-                        resourceOptions={resourceOptions}
+                        mainTypes={mainTypes}
                         onTypeChange={handleTypeChange}
+                        handleMainChange={handleMainChange}
                         onProductChange={handleProductChange}
                         onQuantityChange={handleQuantityChange}
                         onRegionChange={handleRegionChange}
                         onDelete={handleDelete}
+                        selectedMain={selectedMain}
+                        subTypes={subTypes}
                     />
                 ))}
             </form>

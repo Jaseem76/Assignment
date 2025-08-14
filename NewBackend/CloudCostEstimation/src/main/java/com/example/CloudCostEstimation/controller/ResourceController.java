@@ -1,6 +1,8 @@
 package com.example.CloudCostEstimation.controller;
 
 
+import com.example.CloudCostEstimation.entity.Category;
+import com.example.CloudCostEstimation.repo.CategoryRepository;
 import com.example.CloudCostEstimation.service.PriceEstimator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,8 @@ public class ResourceController
     PriceEstimator priceEstimator;
     Float lastCalculatedPrice;
 
-
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @GetMapping("/")
     public  String HelloFromSpring()
@@ -33,6 +36,17 @@ public class ResourceController
     }
 
 
+    @GetMapping("/categories")
+    public List<Category> getCategories()
+    {
+        return categoryRepository.findByParentIsNull();
+    }
+
+    @GetMapping("/categories/{id}/subcategories")
+    public List<Category> getSubCategories(@PathVariable("id")  Long parentId)
+    {
+        return categoryRepository.findByParentId(parentId);
+    }
 
     @PostMapping("/api/resources/calculate")
     public ResponseEntity<Map<String, Float>> PriceEstimated(@RequestBody List<ResourceRequest> resources)
