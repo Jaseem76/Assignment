@@ -131,7 +131,7 @@ This backend receives the input from frontend and displays the calculated costs.
 
 * **Cost_Estimation table** – The unit price is taken from cost_estimate table using (resource_type,resource_product)
 * **Region_Info table** – The region modifier is taken from region_info table by the region input given by user.
-* **categories table*** - This table stores the resource type and link the sub products into it s parent resource type. This helps to remove the hardcoded form elements in the frontend, this also enables scaling up/down of the web service based on requirements.
+* **categories table** - This table stores the resource type and link the sub products into it s parent resource type. This helps to remove the hardcoded form elements in the frontend, this also enables scaling up/down of the web service based on requirements.
 * **Normalised and redundancy minimized tables** – This ensures the table entries to be minimal as possible, 9 entries (3 products for each type) in cost_estimation table and 3 entries(3 regions, 3 region modifiers) in   region_info table. This helps to have a base unit price stored in table and then using region modifier to change the unit price accordingly.
 
   eg : if product : 'cpu', unit price : 500, then if region = usa , then we pick region modifier from region_info table, say 1.3(30% increment from base price). therefore the unit price will become 500X1.3 = 650Rs
